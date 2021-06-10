@@ -1,0 +1,12 @@
+==================
+Basic select
+==================
+
+SELECT * FROM foo;
+
+---
+
+(source_file
+ (select_stmt
+    (projection_exprs)
+    (ident)))
