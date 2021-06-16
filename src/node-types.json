@@ -23,7 +23,39 @@
       "required": false,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -43,7 +75,39 @@
         "required": true,
         "types": [
           {
-            "type": "expr",
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "bool",
+            "named": true
+          },
+          {
+            "type": "document",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_expr",
             "named": true
           }
         ]
@@ -143,12 +207,49 @@
         "required": true,
         "types": [
           {
-            "type": "expr",
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "bool",
+            "named": true
+          },
+          {
+            "type": "document",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_expr",
             "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "bool",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "commit_stmt",
@@ -169,11 +270,39 @@
       "required": true,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
           "named": true
         },
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -204,33 +333,6 @@
       "types": [
         {
           "type": "ident",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "binary_expr",
-          "named": true
-        },
-        {
-          "type": "document",
-          "named": true
-        },
-        {
-          "type": "unary_expr",
           "named": true
         }
       ]
@@ -292,11 +394,39 @@
       "required": true,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
           "named": true
         },
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -316,6 +446,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "path",
@@ -341,11 +476,39 @@
       "required": false,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
           "named": true
         },
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -380,11 +543,31 @@
       "required": true,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
           "named": true
         },
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -393,6 +576,14 @@
         },
         {
           "type": "select_stmt",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -454,6 +645,11 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "unary_expr",
     "named": true,
     "fields": {
@@ -462,7 +658,39 @@
         "required": true,
         "types": [
           {
-            "type": "expr",
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "bool",
+            "named": true
+          },
+          {
+            "type": "document",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_expr",
             "named": true
           }
         ]
@@ -488,7 +716,19 @@
       "required": true,
       "types": [
         {
-          "type": "expr",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "document",
           "named": true
         },
         {
@@ -496,7 +736,23 @@
           "named": true
         },
         {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "path",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -511,11 +767,23 @@
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
           "type": "document",
           "named": true
         },
         {
-          "type": "expr",
+          "type": "ident",
           "named": true
         },
         {
@@ -523,7 +791,23 @@
           "named": true
         },
         {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "positional_param",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expr",
           "named": true
         }
       ]
@@ -782,10 +1066,6 @@
     "named": false
   },
   {
-    "type": "NULL",
-    "named": false
-  },
-  {
     "type": "OFFSET",
     "named": false
   },
@@ -904,6 +1184,10 @@
   {
     "type": "false",
     "named": false
+  },
+  {
+    "type": "null",
+    "named": true
   },
   {
     "type": "positional_param",

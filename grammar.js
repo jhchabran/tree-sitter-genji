@@ -1,12 +1,12 @@
 const
   digitChar = /[0-9]/,
-  identChar = /\w/,
+  identChars = /[a-zA-Z]+/,
   escapedChar = seq("\\", choice("n", "\\", "'", "\"" )),
-  stringChar = /[^\n]/,
+  stringChars = /[^\n]*/,
   integerLit = /\d+/g,
   stringLit = choice(
-    seq("\"", repeat(stringChar), "\""),
-    seq("'", repeat(stringChar), "'"),
+    seq("\"", stringChars, "\""),
+    seq("'", stringChars, "'"),
   ),
   numberLit = choice(
       seq(optional(seq(optional("-"), repeat1(digitChar))), ".", repeat1(digitChar)), // [ ["-"] { number } "." ] { number }
@@ -43,13 +43,9 @@ module.exports = grammar({
   precedences: $ => [
     [
       'unary_not',
-      'unary_void',
-      'binary_exp',
       'binary_times',
       'binary_plus',
-      'binary_compare',
       'binary_relation',
-      'binary_in',
       'binary_and',
       'binary_or',
     ],
@@ -102,12 +98,12 @@ module.exports = grammar({
         $.ident,
         optional(seq(
           "WHERE",
-          $.expr,
+          $._expr,
         )),
         optional(seq(
           "GROUP",
           "BY",
-          $.expr,
+          $._expr,
         )),
         optional(seq(
           "ORDER",
@@ -116,11 +112,11 @@ module.exports = grammar({
         )),
         optional(seq(
           "LIMIT",
-          $.expr,
+          $._expr,
         )),
         optional(seq(
           "OFFSET",
-          $.expr
+          $._expr
         )),
         optional(seq(
           "UNION",
@@ -135,7 +131,7 @@ module.exports = grammar({
       $.ident,
       optional(seq(
         "WHERE",
-        $.expr,
+        $._expr,
       )),
       optional(seq(
         "ORDER",
@@ -144,11 +140,11 @@ module.exports = grammar({
       )),
       optional(seq(
         "LIMIT",
-        $.expr,
+        $._expr,
       )),
       optional(seq(
         "OFFSET",
-        $.expr
+        $._expr
       )),
     ),
 
@@ -160,13 +156,13 @@ module.exports = grammar({
           repeat(seq(
             $.path,
             "=",
-            $.expr,
+            $._expr,
             ","
           )),
           seq(
             $.path,
             "=",
-            $.expr,
+            $._expr,
           )
         ),
         seq("UNSET",
@@ -179,7 +175,7 @@ module.exports = grammar({
       ),
       optional(seq(
         "WHERE",
-        $.expr,
+        $._expr,
       )),
     ),
 
@@ -227,18 +223,23 @@ module.exports = grammar({
     ),
 
     ident: $ => choice(
-      seq(repeat1(identChar)),
-      seq("`", repeat(stringChar), "`")
+      identChars,
+      seq("`", stringChars, "`")
     ),
 
-    expr: $ => choice(
+    number: $ => numberLit,
+    string: $ => stringLit,
+    bool: $ => choice("true", "false"),
+    null: $ => "NULL",
+
+    _expr: $ => choice(
       $.unary_expr,
       $.binary_expr,
-      numberLit,
-      stringLit,
-      "true",
-      "false",
-      "NULL",
+      $.number,
+      $.string,
+      $.bool,
+      $.null,
+      $.ident,
       $.document,
       $.array,
     ),
@@ -252,14 +253,14 @@ module.exports = grammar({
     ].map(([operator, precedence]) =>
       prec.left(precedence, seq(
         field('operator', operator),
-        field('argument', $.expr)
+        field('argument', $._expr)
       ))
     )),
 
     cast_expr: $ => seq(
       "CAST",
       "(",
-      $.expr,
+      $._expr,
       "AS",
       type,
       ")",
@@ -273,10 +274,10 @@ module.exports = grammar({
           seq(
             "(",
             repeat(seq(
-              $.expr,
+              $._expr,
               ","
             )),
-            $.expr,
+            $._expr,
             ")",
             ),
         ),
@@ -285,11 +286,11 @@ module.exports = grammar({
 
     projection_exprs: $ => choice(
       "*",
-      seq($.expr, optional(seq("AS", $.ident))),
+      seq($._expr, optional(seq("AS", $.ident))),
     ),
 
     values_list: $ => choice(
-      seq("(", repeat(seq($.expr, ",")), $.expr, ")"),
+      seq("(", repeat(seq($._expr, ",")), $._expr, ")"),
       seq(choice(
         $.named_param,
         $.positional_param,
@@ -332,9 +333,9 @@ module.exports = grammar({
         [seq('IS', "NOT"), 'binary_relation'],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
-          field('left', $.expr),
+          field('left', $._expr),
           field('operator', operator),
-          field('right', $.expr)
+          field('right', $._expr)
         ))
       )
     ),
@@ -355,15 +356,15 @@ module.exports = grammar({
         $.ident,
       ),
       ":",
-      $.expr
+      $._expr
     ),
 
     array: $ => choice(
       seq("[", "]"),
       seq(
       "[",
-        repeat(seq($.expr, ",")),
-        $.expr,
+        repeat(seq($._expr, ",")),
+        $._expr,
       "]",
       ),
     ),

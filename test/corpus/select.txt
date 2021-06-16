@@ -1,0 +1,70 @@
+===============================================
+Select all from table
+===============================================
+
+SELECT * FROM foo;
+
+---
+
+(source_file
+ (select_stmt
+    (projection_exprs)
+    (ident)))
+
+===============================================
+Select all from table where value
+===============================================
+
+SELECT * FROM foo WHERE 1;
+
+---
+
+(source_file
+  (select_stmt
+    (projection_exprs)
+    (ident)
+    (number)))
+
+===============================================
+Select expression from table
+===============================================
+
+SELECT 1+1 FROM foo;
+
+---
+
+(source_file
+  (select_stmt
+    (projection_exprs
+      (binary_expr (number) (number)))
+      (ident)))
+
+===============================================
+Select conditional expr from table
+===============================================
+
+SELECT 2 > 1 FROM foo;
+
+---
+
+(source_file
+  (select_stmt
+    (projection_exprs
+      (binary_expr (number) (number)))
+      (ident)))
+
+===============================================
+Select all expr from table where condition
+===============================================
+
+SELECT * FROM foo WHERE a > 1;
+
+---
+
+(source_file
+  (select_stmt
+    (projection_exprs)
+    (ident)
+    (binary_expr
+      (ident)
+      (number))))
